@@ -10,7 +10,6 @@ public class ReverseLinkedList {
     class Node {
         int data;
         Node next;
-        Node random;
 
         public Node(int data) {
             this.data = data;
@@ -27,7 +26,6 @@ public class ReverseLinkedList {
         public String toRandomString() {
             return "Node{" +
                     "data=" + data +
-                    ", random=" + random +
                     '}';
         }
     }
@@ -42,23 +40,71 @@ public class ReverseLinkedList {
         node3.next = node2;
         node2.next = node1;
 
-        Node reveresedNode = node4;
-        while (reveresedNode.next != null) {
-            reveresedNode = reveresedNode.next;
+        Node newList = null;
+        Node curr = node4;
+        Node nextNode;
+        while (curr != null) {
+            if (newList == null) {
+                newList = curr;
+                nextNode = curr.next;
+                curr.next = null;
+            } else {
+                nextNode = curr.next;
+                curr.next = newList;
+                newList = curr;
+            }
+
+            curr = nextNode;
         }
-        System.out.println(reveresedNode.toString());
 
-        Node revNode = reveresedNode;
-        Node node = node4;
-        while (node.next != null) {
-            System.out.println(node.next.toString());
-            revNode.next = node.next;
-            revNode = revNode.next;
-            node = node.next;
+        System.out.println(newList.toString());
+    }
 
+    @Test
+    public void testDuplicatedONSpace() {
+        Node node4 = new Node(4);
+        Node node3 = new Node(3);
+        Node node2 = new Node(2);
+        Node node1 = new Node(1);
+        node4.next = node3;
+        node3.next = node2;
+        node2.next = node1;
+
+        Node newList = null;
+        Node curr = node4;
+        while (curr != null) {
+            if (newList == null) {
+                newList = new Node(curr.data);
+            } else {
+                Node newNode = new Node(curr.data);
+                newNode.next= newList;
+                newList = newNode;
+            }
+
+            curr = curr.next;
         }
 
+        System.out.println(newList.toString());
+    }
 
-        System.out.println(reveresedNode.toString());
+    @Test
+    public void testPrint() {
+        Node node4 = new Node(4);
+        Node node3 = new Node(3);
+        Node node2 = new Node(2);
+        Node node1 = new Node(1);
+        node4.next = node3;
+        node3.next = node2;
+        node2.next = node1;
+
+        printNode(node4);
+    }
+
+    void printNode(Node node){
+        if(node==null){
+            return;
+        }
+        printNode(node.next);
+        System.out.println(node.data);
     }
 }

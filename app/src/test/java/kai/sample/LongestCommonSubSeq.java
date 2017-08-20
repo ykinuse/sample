@@ -34,7 +34,7 @@ public class LongestCommonSubSeq {
         while (text1Index > 0 && text2Index > 0) {
             int value = result[text1Index][text2Index];
             if (value != result[text1Index - 1][text2Index] && value != result[text1Index][text2Index - 1]) {
-                text += text2.charAt(text2Index - 1);
+                text = text2.charAt(text2Index - 1) + text;
                 text1Index--;
                 text2Index--;
             } else if (value == result[text1Index - 1][text2Index]) {
@@ -48,5 +48,4 @@ public class LongestCommonSubSeq {
 
         return result[text1Size][text2Size];
     }
-
 }

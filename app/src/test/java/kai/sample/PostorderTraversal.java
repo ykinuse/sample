@@ -2,6 +2,8 @@ package kai.sample;
 
 import org.junit.Test;
 
+import java.util.Stack;
+
 /**
  * Created by yongkai.teo on 10/8/17.
  */
@@ -50,7 +52,26 @@ public class PostorderTraversal {
         node1.right = node3;
         node3.right = node7;
         node7.right = node8;
-        postorderTraversal(node1);
+        inorderTraversal(node1);
+    }
+
+
+    public void inorderTraversal(Node root) {
+        Stack<Node> node = new Stack<>();
+        node.push(root);
+        while (!node.isEmpty()) {
+            Node peekNode = node.peek();
+            if (peekNode.left != null) {
+                node.push(peekNode.left);
+                peekNode.left = null;
+            } else {
+                Node currNode = node.pop();
+                System.out.println(currNode.data);
+                if (currNode.right != null) {
+                    node.push(currNode.right);
+                }
+            }
+        }
     }
 
     public Node postorderTraversal(Node root) {

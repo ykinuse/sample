@@ -2,6 +2,8 @@ package kai.sample;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 /**
  * Created by yongkai.teo on 21/8/17.
  */
@@ -41,6 +43,21 @@ public class TreeToLinkedList {
         node3.left = node6;
         node3.right = node7;
 
+        LinkedList<Integer> list = new LinkedList<>();
+        toLinkedList(node1, list);
+        for (Integer i : list) {
+            System.out.print(i);
+        }
+    }
+
+    void toLinkedList(Node root, LinkedList<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        toLinkedList(root.left, list);
+        list.add(root.data);
+        toLinkedList(root.right, list);
     }
 
 }

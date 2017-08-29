@@ -23,7 +23,7 @@ public class ReverseString {
         for (int i = 0; i < arrays.length; i++) {
             if (arrays[i] == ' ') {
                 System.arraycopy(arrays, index, reveresed, reveresed.length - i, i - index);
-                reveresed[reveresed.length - i - 1] = ' ';
+                reveresed[reveresed.length - i - 1] = arrays[i];
                 index = i + 1;
             }
         }

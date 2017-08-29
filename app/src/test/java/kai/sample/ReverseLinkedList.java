@@ -77,7 +77,7 @@ public class ReverseLinkedList {
                 newList = new Node(curr.data);
             } else {
                 Node newNode = new Node(curr.data);
-                newNode.next= newList;
+                newNode.next = newList;
                 newList = newNode;
             }
 
@@ -100,8 +100,8 @@ public class ReverseLinkedList {
         printNode(node4);
     }
 
-    void printNode(Node node){
-        if(node==null){
+    void printNode(Node node) {
+        if (node == null) {
             return;
         }
         printNode(node.next);

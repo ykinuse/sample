@@ -25,8 +25,6 @@ public class NumbersOneInBinary {
         //       --------
         //       00000001
 
-        System.out.println("shit1 " + (x << 1));
-        System.out.println("shit2 " + (x >> 1));
         int sum = 0;
         while (x > 0) {
             sum += x & 1;

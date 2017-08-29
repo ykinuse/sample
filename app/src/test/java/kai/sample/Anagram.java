@@ -9,7 +9,7 @@ import org.junit.Test;
 public class Anagram {
     @Test
     public void test() throws Exception {
-        System.out.println(isAnagram("aba","bbab"));
+        System.out.println(isAnagram("abbb","bbab"));
     }
 
     public boolean isAnagram(String s1, String s2){

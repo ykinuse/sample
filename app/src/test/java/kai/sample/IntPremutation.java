@@ -3,7 +3,6 @@ package kai.sample;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by ykinuse on 18/8/17.
@@ -12,9 +11,12 @@ import java.util.Arrays;
 public class IntPremutation {
     @Test
     public void test() throws Exception {
-        for (int[] array : premutation(new int[]{1, 2, 3,4 ,5})) {
-            System.out.println(Arrays.toString(array));
+        int count = 0;
+        long time = System.currentTimeMillis();
+        for (int[] array : premutation(new int[]{1, 2, 3, 4, 5, 1, 2, 1})) {
+            count++;
         }
+        System.out.println(count + " " + (System.currentTimeMillis() - time));
     }
 
     public ArrayList<int[]> premutation(int[] input) {

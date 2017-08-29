@@ -44,19 +44,20 @@ public class PossibleCombination {
     }
 
     public void checkPossible(String text, String acc) {
-        String current = "" + text.charAt(0);
-        if (text.length() > 1) {
-            for (int i = 1; i < text.length(); i++) {
-                if (map.containsKey(current)) {
-                    checkPossible(text.substring(i, text.length()), acc + map.get(current));
-                }
-                current = text.substring(0, i + 1);
+        if (text.length() == 1) {
+            if (map.containsKey(text)) {
+                System.out.println(acc + map.get(text));
             }
+            return;
         }
 
-        if (map.containsKey(current)) {
-            System.out.println(acc + map.get(current));
+        String current;
+        for (int i = 1; i <= text.length(); i++) {
+            current = text.substring(0, i);
+            if (!map.containsKey(current)) {
+                break;
+            }
+            checkPossible(text.substring(i, text.length()), acc + map.get(current));
         }
-
     }
 }

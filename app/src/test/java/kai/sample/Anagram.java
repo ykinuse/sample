@@ -9,11 +9,11 @@ import org.junit.Test;
 public class Anagram {
     @Test
     public void test() throws Exception {
-        System.out.println(isAnagram("abbb","bbab"));
+        System.out.println(isAnagram("abbb", "bbab"));
     }
 
-    public boolean isAnagram(String s1, String s2){
-        if(s1.length() != s2.length()){
+    public boolean isAnagram(String s1, String s2) {
+        if (s1.length() != s2.length()) {
             return false;
         }
 
@@ -21,16 +21,16 @@ public class Anagram {
         s2 = s2.toLowerCase();
 
         int[] cache = new int[1 << 8];
-        for(char c : s1.toCharArray()){
+        for (char c : s1.toCharArray()) {
             cache[c]++;
         }
 
-        for(char c : s2.toCharArray()){
+        for (char c : s2.toCharArray()) {
             cache[c]--;
         }
 
-        for(int i : cache){
-            if(i!=0){
+        for (int i : cache) {
+            if (i != 0) {
                 return false;
             }
         }

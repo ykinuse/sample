@@ -38,13 +38,43 @@ public class LowestCommonAncestor {
         node2.right = node5;
         node3.left = node6;
         node3.right = node7;
-        System.out.println(lcs(node1, 1, 4).toString());
+        System.out.println(lca2(node1, 2, 7,true));
+    }
+
+    Node lca2(Node node, int index1, int index2, boolean root) {
+        if (node == null) {
+            return null;
+        }
+
+        Node left = lca2(node.left, index1, index2, false);
+        Node right = lca2(node.right, index1, index2, false);
+
+        if (left != null && right != null) {
+            return node;
+        }
+
+        if (node.data == index1 || node.data == index2) {
+            return node;
+        }
+
+        if(!root) {
+            if (left != null) {
+                return left;
+            }
+
+            if (right != null) {
+                return right;
+            }
+        }
+
+        return null;
     }
 
     Node lcs(Node node, int index1, int index2) {
         if (node == null) {
             return null;
         }
+        System.out.println(node.toString());
         if (node.data == index1 || node.data == index2) {
             return node;
         }

@@ -7,9 +7,55 @@ import org.junit.Test;
  */
 
 public class LongestCommonSubSeq {
+    static int count = 0;
+
     @Test
     public void test() {
         System.out.println(longestCommonSubseq("abcdaf", "acbcf"));
+//        System.out.println(lcss("abcdaf", "acbcf", "abcdaf".length() - 1, "acbcf".length() - 1));
+        int[][] cache = new int["abcdaf".length()]["acbcf".length()];
+        for (int i = 0; i < cache.length; i++) {
+            for (int j = 0; j < cache[i].length; j++) {
+                cache[i][j] = -1;
+            }
+        }
+        System.out.println(lcssDP("abcdaf", "acbcf", "abcdaf".length() - 1, "acbcf".length() - 1, cache));
+        System.out.println("Total reccur " + count);
+    }
+
+    public static int lcssDP(String text1, String text2, int index1, int index2, int[][] cache) {
+        count++;
+        if (index1 < 0 || index2 < 0) {
+            return 0;
+        }
+
+        if (cache[index1][index2] != -1) {
+            return cache[index1][index2];
+        }
+
+        if (text1.charAt(index1) == text2.charAt(index2)) {
+            int result = 1 + lcssDP(text1, text2, index1 - 1, index2 - 1, cache);
+            cache[index1][index2] = result;
+            return result;
+        }
+
+        int result = Math.max(lcssDP(text1, text2, index1 - 1, index2, cache), lcssDP(text1, text2, index1, index2 - 1, cache));
+        cache[index1][index2] = result;
+        return result;
+    }
+
+
+    public static int lcss(String text1, String text2, int index1, int index2) {
+        count++;
+        if (index1 < 0 || index2 < 0) {
+            return 0;
+        }
+
+        if (text1.charAt(index1) == text2.charAt(index2)) {
+            return 1 + lcss(text1, text2, index1 - 1, index2 - 1);
+        }
+
+        return Math.max(lcss(text1, text2, index1 - 1, index2), lcss(text1, text2, index1, index2 - 1));
     }
 
     public static int longestCommonSubseq(String text1, String text2) {

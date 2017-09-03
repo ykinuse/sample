@@ -52,11 +52,11 @@ public class PostorderTraversal {
         node1.right = node3;
         node3.right = node7;
         node7.right = node8;
-        inorderTraversal(node1);
+        inorderTravesal1(node1);
     }
 
 
-    public void inorderTraversal(Node root) {
+    public static void inorderTraversal(Node root) {
         Stack<Node> node = new Stack<>();
         node.push(root);
         while (!node.isEmpty()) {
@@ -74,7 +74,17 @@ public class PostorderTraversal {
         }
     }
 
-    public Node postorderTraversal(Node root) {
+    public static void inorderTravesal1(Node root){
+        if(root==null){
+            return;
+        }
+
+        inorderTravesal1(root.left);
+        System.out.println(root.data);
+        inorderTravesal1(root.right);
+    }
+
+    public static Node postorderTraversal(Node root) {
         if (root == null) {
             return null;
         }
